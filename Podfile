@@ -7,6 +7,8 @@ target 'WhoToFollow' do
     pod 'RxSwift', '~> 2.0'
     pod 'RxCocoa', '~> 2.0'
     pod 'Moya/RxSwift'
+    pod 'Moya-ModelMapper/RxSwift'
+    pod 'RxOptional'
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
@@ -16,8 +18,3 @@ target 'WhoToFollowTests' do
   pod 'RxBlocking', '~> 2.0'
   pod 'RxTests', '~> 2.2'
 end
-
-target 'WhoToFollowUITests' do
-
-end
-

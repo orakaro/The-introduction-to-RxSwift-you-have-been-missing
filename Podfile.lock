@@ -1,9 +1,19 @@
 PODS:
   - Alamofire (3.4.1)
-  - Moya/Core (7.0.0):
+  - ModelMapper (2.1.0)
+  - Moya (6.5.0):
+    - Moya/Core (= 6.5.0)
+  - Moya-ModelMapper/Core (2.0.1):
+    - ModelMapper (~> 2.0)
+    - Moya (~> 6.4)
+  - Moya-ModelMapper/RxSwift (2.0.1):
+    - Moya-ModelMapper/Core
+    - Moya/RxSwift (~> 6.4)
+    - RxSwift (~> 2.3)
+  - Moya/Core (6.5.0):
     - Alamofire (~> 3.0)
     - Result (~> 2.0)
-  - Moya/RxSwift (7.0.0):
+  - Moya/RxSwift (6.5.0):
     - Moya/Core
     - RxSwift (~> 2.0)
   - Nimble (3.0.0)
@@ -13,17 +23,22 @@ PODS:
     - RxSwift (~> 2.5)
   - RxCocoa (2.6.0):
     - RxSwift (~> 2.5)
+  - RxOptional (2.0.0):
+    - RxCocoa (~> 2.0)
+    - RxSwift (~> 2.0)
   - RxSwift (2.6.0)
   - RxTests (2.6.0):
     - RxSwift (~> 2.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Moya-ModelMapper/RxSwift
   - Moya/RxSwift
   - Nimble (= 3.0.0)
   - Quick (~> 0.8.0)
   - RxBlocking (~> 2.0)
   - RxCocoa (~> 2.0)
+  - RxOptional
   - RxSwift (~> 2.0)
   - RxTests (~> 2.2)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -39,16 +54,17 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Moya: f004b82418fb8165ee1fc9f86190db4b3611fda9
+  ModelMapper: e599744bc1e869bdb87b453b7ce16981028b8513
+  Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
+  Moya-ModelMapper: 8956f8e834eea3cf776e79ddbf6680e0d53c5923
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   RxBlocking: f2e0a7e74d5e9d3029d2b1118e2af01f583fbdd8
   RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
+  RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
   RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
   RxTests: cdcc379c70e80089a8bc2c99515223339d1c3b81
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: d64d713d5901eba0ac916cdc41de6f7d84898f01
-
-COCOAPODS: 1.0.1
+COCOAPODS: 0.39.0

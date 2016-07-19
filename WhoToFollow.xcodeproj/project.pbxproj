@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		148612841D3DDF3100DF017B /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148612831D3DDF3100DF017B /* Github.swift */; };
+		148612861D3DE17800DF017B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148612851D3DE17800DF017B /* User.swift */; };
+		148612881D3DE4B300DF017B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148612871D3DE4B300DF017B /* UserModel.swift */; };
+		1486128A1D3DF86000DF017B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148612891D3DF86000DF017B /* Extension.swift */; };
 		3B7E031D1122C07FC6305327 /* Pods_WhoToFollowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E7CEC02C92DD0D5BA3833E /* Pods_WhoToFollowTests.framework */; };
-		7F29A94B29507C8040529A19 /* Pods_WhoToFollowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52E0CCD455C0B86EB05AA42 /* Pods_WhoToFollowUITests.framework */; };
 		8FFA3362E6CE79F75508E8C1 /* Pods_WhoToFollow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911461D15DA8DDD2D1181B20 /* Pods_WhoToFollow.framework */; };
 		B4DDDCFD1D3D26EB0050DAE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDCFC1D3D26EB0050DAE0 /* AppDelegate.swift */; };
 		B4DDDD021D3D26EB0050DAE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4DDDD001D3D26EB0050DAE0 /* Main.storyboard */; };
 		B4DDDD041D3D26EB0050DAE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4DDDD031D3D26EB0050DAE0 /* Assets.xcassets */; };
 		B4DDDD071D3D26EB0050DAE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4DDDD051D3D26EB0050DAE0 /* LaunchScreen.storyboard */; };
 		B4DDDD121D3D26EB0050DAE0 /* WhoToFollowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDD111D3D26EB0050DAE0 /* WhoToFollowTests.swift */; };
-		B4DDDD1D1D3D26EB0050DAE0 /* WhoToFollowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDD1C1D3D26EB0050DAE0 /* WhoToFollowUITests.swift */; };
 		B4DDDD2B1D3D29140050DAE0 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDD2A1D3D29140050DAE0 /* FollowTableViewController.swift */; };
 		B4DDDD2D1D3D29700050DAE0 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDDD2C1D3D29700050DAE0 /* FollowTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -28,19 +30,14 @@
 			remoteGlobalIDString = B4DDDCF81D3D26EB0050DAE0;
 			remoteInfo = WhoToFollow;
 		};
-		B4DDDD191D3D26EB0050DAE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B4DDDCF11D3D26EB0050DAE0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4DDDCF81D3D26EB0050DAE0;
-			remoteInfo = WhoToFollow;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		148612831D3DDF3100DF017B /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
+		148612851D3DE17800DF017B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		148612871D3DE4B300DF017B /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		148612891D3DF86000DF017B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		32E7CEC02C92DD0D5BA3833E /* Pods_WhoToFollowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoToFollowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		598EDF6AE5DBBBD24F245BBE /* Pods-WhoToFollowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoToFollowUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhoToFollowUITests/Pods-WhoToFollowUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5FB7EC1FB4755F84081BAF22 /* Pods-WhoToFollowUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoToFollowUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhoToFollowUITests/Pods-WhoToFollowUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		911461D15DA8DDD2D1181B20 /* Pods_WhoToFollow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoToFollow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A580DEB4690AACCE59A49962 /* Pods-WhoToFollowTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoToFollowTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhoToFollowTests/Pods-WhoToFollowTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4DDDCF91D3D26EB0050DAE0 /* WhoToFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoToFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,15 +49,11 @@
 		B4DDDD0D1D3D26EB0050DAE0 /* WhoToFollowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoToFollowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4DDDD111D3D26EB0050DAE0 /* WhoToFollowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoToFollowTests.swift; sourceTree = "<group>"; };
 		B4DDDD131D3D26EB0050DAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4DDDD181D3D26EB0050DAE0 /* WhoToFollowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoToFollowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4DDDD1C1D3D26EB0050DAE0 /* WhoToFollowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoToFollowUITests.swift; sourceTree = "<group>"; };
-		B4DDDD1E1D3D26EB0050DAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4DDDD2A1D3D29140050DAE0 /* FollowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowTableViewController.swift; sourceTree = "<group>"; };
 		B4DDDD2C1D3D29700050DAE0 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
 		BF4C7FEC726F2A8DC87CE165 /* Pods-WhoToFollow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoToFollow.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhoToFollow/Pods-WhoToFollow.release.xcconfig"; sourceTree = "<group>"; };
 		C78E3E8DA484E6DD5A3C8AAF /* Pods-WhoToFollowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoToFollowTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhoToFollowTests/Pods-WhoToFollowTests.release.xcconfig"; sourceTree = "<group>"; };
 		D3D2400B3852566FB54F323F /* Pods-WhoToFollow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoToFollow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhoToFollow/Pods-WhoToFollow.debug.xcconfig"; sourceTree = "<group>"; };
-		E52E0CCD455C0B86EB05AA42 /* Pods_WhoToFollowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoToFollowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,14 +73,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4DDDD151D3D26EB0050DAE0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7F29A94B29507C8040529A19 /* Pods_WhoToFollowUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,8 +83,6 @@
 				BF4C7FEC726F2A8DC87CE165 /* Pods-WhoToFollow.release.xcconfig */,
 				A580DEB4690AACCE59A49962 /* Pods-WhoToFollowTests.debug.xcconfig */,
 				C78E3E8DA484E6DD5A3C8AAF /* Pods-WhoToFollowTests.release.xcconfig */,
-				5FB7EC1FB4755F84081BAF22 /* Pods-WhoToFollowUITests.debug.xcconfig */,
-				598EDF6AE5DBBBD24F245BBE /* Pods-WhoToFollowUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -109,7 +92,6 @@
 			children = (
 				911461D15DA8DDD2D1181B20 /* Pods_WhoToFollow.framework */,
 				32E7CEC02C92DD0D5BA3833E /* Pods_WhoToFollowTests.framework */,
-				E52E0CCD455C0B86EB05AA42 /* Pods_WhoToFollowUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,7 +101,6 @@
 			children = (
 				B4DDDCFB1D3D26EB0050DAE0 /* WhoToFollow */,
 				B4DDDD101D3D26EB0050DAE0 /* WhoToFollowTests */,
-				B4DDDD1B1D3D26EB0050DAE0 /* WhoToFollowUITests */,
 				B4DDDCFA1D3D26EB0050DAE0 /* Products */,
 				932A40A616BD85DA4971E7D8 /* Pods */,
 				935C4CCAACADBEB1CB2817BE /* Frameworks */,
@@ -131,7 +112,6 @@
 			children = (
 				B4DDDCF91D3D26EB0050DAE0 /* WhoToFollow.app */,
 				B4DDDD0D1D3D26EB0050DAE0 /* WhoToFollowTests.xctest */,
-				B4DDDD181D3D26EB0050DAE0 /* WhoToFollowUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,6 +126,10 @@
 				B4DDDD081D3D26EB0050DAE0 /* Info.plist */,
 				B4DDDD2A1D3D29140050DAE0 /* FollowTableViewController.swift */,
 				B4DDDD2C1D3D29700050DAE0 /* FollowTableViewCell.swift */,
+				148612831D3DDF3100DF017B /* Github.swift */,
+				148612851D3DE17800DF017B /* User.swift */,
+				148612871D3DE4B300DF017B /* UserModel.swift */,
+				148612891D3DF86000DF017B /* Extension.swift */,
 			);
 			path = WhoToFollow;
 			sourceTree = "<group>";
@@ -157,15 +141,6 @@
 				B4DDDD131D3D26EB0050DAE0 /* Info.plist */,
 			);
 			path = WhoToFollowTests;
-			sourceTree = "<group>";
-		};
-		B4DDDD1B1D3D26EB0050DAE0 /* WhoToFollowUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B4DDDD1C1D3D26EB0050DAE0 /* WhoToFollowUITests.swift */,
-				B4DDDD1E1D3D26EB0050DAE0 /* Info.plist */,
-			);
-			path = WhoToFollowUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +156,7 @@
 				B4DDDCF71D3D26EB0050DAE0 /* Resources */,
 				F80817C19D7E9B4680BF8FD9 /* [CP] Embed Pods Frameworks */,
 				4D81FFBC746BCA351B0E6CBB /* [CP] Copy Pods Resources */,
+				9491843B804D34BF3C1C2EF2 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,6 +177,7 @@
 				B4DDDD0B1D3D26EB0050DAE0 /* Resources */,
 				B0EB3FAB78B402532551BDE5 /* [CP] Embed Pods Frameworks */,
 				C63794B042EAF3F1B4969774 /* [CP] Copy Pods Resources */,
+				D5D1452E6E441C02FB3D10FD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -211,26 +188,6 @@
 			productName = WhoToFollowTests;
 			productReference = B4DDDD0D1D3D26EB0050DAE0 /* WhoToFollowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B4DDDD171D3D26EB0050DAE0 /* WhoToFollowUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B4DDDD271D3D26EB0050DAE0 /* Build configuration list for PBXNativeTarget "WhoToFollowUITests" */;
-			buildPhases = (
-				288A590ACEA6B166A418F6F0 /* [CP] Check Pods Manifest.lock */,
-				B4DDDD141D3D26EB0050DAE0 /* Sources */,
-				B4DDDD151D3D26EB0050DAE0 /* Frameworks */,
-				B4DDDD161D3D26EB0050DAE0 /* Resources */,
-				8D1A0AEC33CD2FB6B0FBECC7 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B4DDDD1A1D3D26EB0050DAE0 /* PBXTargetDependency */,
-			);
-			name = WhoToFollowUITests;
-			productName = WhoToFollowUITests;
-			productReference = B4DDDD181D3D26EB0050DAE0 /* WhoToFollowUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -246,10 +203,6 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					B4DDDD0C1D3D26EB0050DAE0 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = B4DDDCF81D3D26EB0050DAE0;
-					};
-					B4DDDD171D3D26EB0050DAE0 = {
 						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = B4DDDCF81D3D26EB0050DAE0;
 					};
@@ -270,7 +223,6 @@
 			targets = (
 				B4DDDCF81D3D26EB0050DAE0 /* WhoToFollow */,
 				B4DDDD0C1D3D26EB0050DAE0 /* WhoToFollowTests */,
-				B4DDDD171D3D26EB0050DAE0 /* WhoToFollowUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -293,31 +245,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4DDDD161D3D26EB0050DAE0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		288A590ACEA6B166A418F6F0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		41F69BD4F0BCBF8009E84D8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,21 +278,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhoToFollow/Pods-WhoToFollow-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D1A0AEC33CD2FB6B0FBECC7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhoToFollowUITests/Pods-WhoToFollowUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		910BDE30B7501E8A2DE7FB0F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,6 +291,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9491843B804D34BF3C1C2EF2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhoToFollow/Pods-WhoToFollow-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B0EB3FAB78B402532551BDE5 /* [CP] Embed Pods Frameworks */ = {
@@ -408,6 +338,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhoToFollowTests/Pods-WhoToFollowTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D5D1452E6E441C02FB3D10FD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhoToFollowTests/Pods-WhoToFollowTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F80817C19D7E9B4680BF8FD9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -432,6 +377,10 @@
 			files = (
 				B4DDDD2B1D3D29140050DAE0 /* FollowTableViewController.swift in Sources */,
 				B4DDDD2D1D3D29700050DAE0 /* FollowTableViewCell.swift in Sources */,
+				1486128A1D3DF86000DF017B /* Extension.swift in Sources */,
+				148612841D3DDF3100DF017B /* Github.swift in Sources */,
+				148612881D3DE4B300DF017B /* UserModel.swift in Sources */,
+				148612861D3DE17800DF017B /* User.swift in Sources */,
 				B4DDDCFD1D3D26EB0050DAE0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,14 +393,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4DDDD141D3D26EB0050DAE0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4DDDD1D1D3D26EB0050DAE0 /* WhoToFollowUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -459,11 +400,6 @@
 			isa = PBXTargetDependency;
 			target = B4DDDCF81D3D26EB0050DAE0 /* WhoToFollow */;
 			targetProxy = B4DDDD0E1D3D26EB0050DAE0 /* PBXContainerItemProxy */;
-		};
-		B4DDDD1A1D3D26EB0050DAE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4DDDCF81D3D26EB0050DAE0 /* WhoToFollow */;
-			targetProxy = B4DDDD191D3D26EB0050DAE0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -524,7 +460,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -564,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -622,30 +558,6 @@
 			};
 			name = Release;
 		};
-		B4DDDD281D3D26EB0050DAE0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FB7EC1FB4755F84081BAF22 /* Pods-WhoToFollowUITests.debug.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = WhoToFollowUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vunhatminh.WhoToFollowUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = WhoToFollow;
-			};
-			name = Debug;
-		};
-		B4DDDD291D3D26EB0050DAE0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 598EDF6AE5DBBBD24F245BBE /* Pods-WhoToFollowUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = WhoToFollowUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vunhatminh.WhoToFollowUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = WhoToFollow;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,15 +584,6 @@
 			buildConfigurations = (
 				B4DDDD251D3D26EB0050DAE0 /* Debug */,
 				B4DDDD261D3D26EB0050DAE0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B4DDDD271D3D26EB0050DAE0 /* Build configuration list for PBXNativeTarget "WhoToFollowUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B4DDDD281D3D26EB0050DAE0 /* Debug */,
-				B4DDDD291D3D26EB0050DAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
