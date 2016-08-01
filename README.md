@@ -275,7 +275,7 @@ let suggestionStream = Observable.of(userStream, nilOnRefreshTapStream)
   .startWith(.None)
 ```
 Which results in:
-```Swift
+```
            refreshStream: ----------o--------o---->
            requestStream: -r--------r--------r---->
           responseStream: ----R---------R------R-->   
@@ -304,7 +304,7 @@ No need to request more.
 
 Again, let's think in streams. When a 'close' tap event happens, we want to use the most recently emitted (and cached) response on `responseStream` to get one random user from the list in the response. As such:
 
-```Swift
+```
    requestStream: --r--------------->
   responseStream: ------R----------->
 closeClickStream: ------------c----->
@@ -315,7 +315,7 @@ In Rx* there is a combinator function called `combineLatest(f)` that seems to do
 It takes two streams A and B as inputs, and whenever either stream emits a value, combineLatest joins the two most recently emitted values a and b from both streams and outputs a value c = f(x,y), where f is a function you define. 
 It is better explained with a diagram:
 
-```Swift
+```
 stream A: --a-----------e--------i-------->
 stream B: -----b----c--------d-------q---->
           vvvvvvvv combineLatest(f) vvvvvvv
