@@ -2,17 +2,17 @@
 
 This work is inspired by [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) 
 from [@andrestaltz](https://twitter.com/andrestaltz).
-I recreate his RxJS sample code in RxSwift with a step-by-step walkthrough, 
+I recreated his RxJS sample code in RxSwift with a step-by-step walkthrough  
 for those struggling with learning RxSwift due to lack of good references (as I did).
 
 <img src="https://i.gyazo.com/60f3a1b7dc9384b7400a6780cd82e727.gif" width="400">
 
 ---
 
-So you're finding yourself having trouble with learning this new Swift trend. You are not alone. 
+So you're finding yourself having trouble with learning this new Swift trend? You are not alone. 
 
 RxSwift is hard, especially with the lack of good references. 
-All tutorials out there is either too general or too specific, and ReactiveX document just don't help:
+Every tutorial out there is either too general or too specific, and ReactiveX documents just don't help:
 
 > Rx.Observable.prototype.flatMapLatest(selector, [thisArg])
 
@@ -22,16 +22,16 @@ All tutorials out there is either too general or too specific, and ReactiveX doc
 
 ![Imgur](http://i.imgur.com/hLF5F3K.png)
 
-I ended up digging to RxSwift examples and some [open source app](https://github.com/devxoul/RxTodo).
+I ended up digging into RxSwift examples and some [open source apps](https://github.com/devxoul/RxTodo).
 The RxSwift's [very first document](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md) 
-bring in RxSwift's `Binding` or `Retry` - things that I haven't got a clue about. 
-Reading code is not easy also, since it introduces RxSwift in very detail with `RxDataSources` and `Moya/RxSwift` *at the same time*.
+brings in RxSwift's `Binding` or `Retry` - things that I haven't got a clue about. 
+Also, reading the code is not easy, since it introduces RxSwift in great detail with `RxDataSources` and `Moya/RxSwift` *at the same time*.
 
-So I decided to code a sample app that present exactly "Who to Follow" pattern with step by step explanation. This is equivalent to Andre's work but is written in Swift instead, and I hope this can help you learning RxSwift easier than me :smile:
+So I decided to code a sample app that presents exactly "Who to Follow" pattern with step-by-step explanations. This is equivalent to Andre's work, but is written in Swift instead and I hope this can help you learn RxSwift easier than me :smile:
 
 # What is Reactive Programming?
-Tapping a button, typing one chracter inside a label, etc, every occurrence triggered by user can be considered as a typical asynchronous event.
-What if our user repeatedly tap an element, or continuously typing in a search bar? 
+Tapping a button, typing one chracter inside a text field, etc, every occurrence triggered by user can be considered as a typical asynchronous event.
+What if our user repeatedly taps an element, or is continuously typing in a search bar? 
 This time we have *asynchronous event streams*.
 
 ```
@@ -43,8 +43,8 @@ X is an error event
 ---> is the timeline
 ```
 
-You are able to create data streams of anything, not just from tap and typing events. 
-Streams are cheap and ubiquitous, anything can be a stream: variables, user inputs, properties, caches, data structures, etc. 
+You are able to create data streams out of anything, not just from tap or typing events. 
+Streams are cheap and ubiquitous. Anything can be a stream: variables, user inputs, properties, caches, data structures, etc. 
 For example, imagine your Twitter feed would be a data stream in the same fashion that tap events are. 
 You can listen to that stream and react accordingly.
 
@@ -64,37 +64,37 @@ buttonTapStream: ---t----t--t----t------t-->
 counterStream:   ---1----2--3----4------5-->
 ```
 
-In Reactive World streams are called **Observables**, represented by a timeline with ongoing event in time order.
-Every Observable is **immutable**, which means that each stream composition will create completely new Observable.
+In Reactive World streams are called **Observables**, represented by a timeline with ongoing events in chronological order.
+Every Observable is **immutable**, which means that each stream composition will create a completely new Observable.
  
-Reactive Programming(RP) introduce a whole new paradigm in development for reactive applications. 
-Mobile apps today are highly interactive with UI events related to data flow in the back. 
-No screen transition are made but user can see search result while typing in search bar, or pull down for instant refresh, etc.
+Reactive Programming(RP) introduced a whole new paradigm in development for reactive applications. 
+Mobile apps today are highly interactive with UI events related to the flow of data from the back-end. 
+No screen transitions are made but a user can see search results while typing in search bar, or pull down for instant refresh, etc.
  
 # Implementing a "Who to follow" suggestions box
-Let's dive into real-world example. This is Twitter's UI element that suggests other accounts you may want to follow
+Let's dive into a real-world example. This is Twitter's UI element that suggests other accounts you may want to follow
 
 ![Who To Follow](https://camo.githubusercontent.com/81e5d63c69768e1b04447d2e246f47540dd83fbd/687474703a2f2f692e696d6775722e636f6d2f65416c4e62306a2e706e67)
 
-I am going to implement core features below
+I am going to the implement core features below
 * On startup, load accounts data from the API and display 3 suggestions
 * On tapping "Refresh", load 3 other account suggestions into the 3 rows
 * On tapping 'x' button on an account row, clear only that current account and display another
 * Each row displays the account's avatar and their name.
 
-Because Twitter don't provide its API to unauthorized public, I will use Github API instead. 
+Because Twitter doesn't provide its API for unauthorized public use, I will use Github's API instead. 
 There's a [Github API](https://developer.github.com/v3/users/#get-all-users) for getting users with a `since` offset parameter.
 You can check the working code by cloning this repo.
 
 # Request and Response
-Let's will start with the easiest feature: "On startup, load accounts data from the API and display 3 suggestions". This is simply about
+Let's start with the easiest feature: "On startup, load accounts data from the API and display 3 suggestions". This is simply:
 
 1. Doing a request
 2. Getting response
 3. Rendering response data to UITableView
 
 Doing a request is the most basic part in this project. 
-We already know great library for request such as Alamofire, but let's think in Rx first. 
+We already know some great libraries for requests, such as Alamofire, but let's think in Rx first. 
 Consider that request's URL is a string, in this case `https://api.github.com/users`, then we can create our very first *Observable object*: `Observable<String>`
 ```Swift
 let requestStream: Observable<String> = Observable.just("https://api.github.com/users")
@@ -108,7 +108,7 @@ This is a *stream* of URLs, in this case only one event (the URL string) will be
 Where a is the string "https://api.github.com/users"
 ```
 
-`requestStream` is just a stream of strings, doing no other operation, we need to make the "real" request happen when the event is emmited by *subscribing* to it
+`requestStream` is just a stream of strings, it does nothing else. We need to make the "real" request happen when the event is emmited by *subscribing* to it
 ```Swift
 requestStream.subscribeNext { url in 
   // Do the real request to Github API, get back a `User` model
@@ -117,9 +117,9 @@ requestStream.subscribeNext { url in
 ```
 
 Note that `responseStream` is also an `Observable`. 
-You can find the detail implement of `UserModel().findUsers(url)` later on this repo, but for now just conside it as a method which return a list of Users from Github response, then wrapped inside an `Observable` type.
+You can find the implementation details of `UserModel().findUsers(url)` later on in this repo, but for now just consider it as a method which returns a list of Users from the Github response, wrapped inside an `Observable` type.
 
-So next step is rendering this list of Users to UITableView, which can be done with subcribing the `responseStream` again
+So the next step is rendering this list of Users to UITableView, which can be done by subcribing to the `responseStream` again
 ```Swift
 requestStream.subscribeNext { url in 
   let responseStream: Observable<[User]> = UserModel().findUsers(url)
@@ -138,16 +138,16 @@ let responseStream = requestStream.map { url in
 }
 ```
 We just created a beast called "metastream": a stream of streams. 
-Don't panic yet. 
+Don't panic just yet. 
 A metastream is a stream where each emitted value is yet another stream. 
 You can think of it as [pointers](https://en.wikipedia.org/wiki/Pointer_(computer_programming)): each emitted value is a pointer to another stream. 
 In our example, each request URL is mapped to a pointer to the stream containing the corresponding response.
 
 ![MetaStream](https://camo.githubusercontent.com/2a8a9cc75acd13443f588fd7f386bd7a6dcb271a/687474703a2f2f692e696d6775722e636f6d2f48486e6d6c61632e706e67)
 
-A metastream looks confusing and we just want a simple stream of response where each emitted value is a directly `[User]`, not stream of `[User]`. 
-Say hi to `flatMap(f)`, version of map() that "flattens" a metastream, by emitting on the "trunk" stream everything that will be emitted on "branch" streams. 
-`flatmap` is not a "fix" and metastreams are not a bug, these are really the tools for dealing with asynchronous responses in Rx.
+A metastream looks confusing and we just want a simple stream of responses where each emitted value is just a `[User]`, not stream of `[User]`. 
+Say hi to `flatMap(f)`, a version of map() that "flattens" a metastream by emitting on the "trunk" stream everything that will be emitted on "branch" streams. 
+`flatmap` is not a "fix" and metastreams are not a bug; these are really the tools for dealing with asynchronous responses in Rx.
 
 ```Swift
 let responseStream = requestStream.flatMap { url in 
@@ -157,7 +157,7 @@ let responseStream = requestStream.flatMap { url in
 
 ![flatMap](https://camo.githubusercontent.com/0b0ac4a249e1c15d7520c220957acfece1af3e95/687474703a2f2f692e696d6775722e636f6d2f4869337a4e7a4a2e706e67)
 
-Nice. If we have more events happenning in `requestStream` (like continuous tapping a button or typing text), we will have the corresponding response results on `responseStream`, as expected:
+Nice. If we have more events happenning in `requestStream` (like continuous tapping of a button or typing text), we will have the corresponding response results on `responseStream`, as expected:
 
 ```
 requestStream:  --url-------url----------url------------|->
@@ -176,10 +176,10 @@ responseStream.subscribeNext { users in
 ```
 
 # The refresh button
-We will want a set of 3 new users every time when user tapped the "refresh" button. How to achieve this scenario?
+We will want a set of 3 new users every time a user taps the "refresh" button. How do we achieve this scenario?
 
-We need 2 stream: a stream of tap event on the refresh button, and a stream of API URL transformed from that stream. 
-In RxSwift, the stream of tap event can be created with method `rx_tap`
+We need 2 streams: a stream of tap events on the refresh button, and a stream of API URLs transformed from that stream. 
+In RxSwift, the stream of tap events can be created with method `rx_tap`
 ```Swift
 let refreshStream = refresh.rx_tap
 let requestStream: Observable<String> = refreshStream.map { _ in
@@ -187,12 +187,12 @@ let requestStream: Observable<String> = refreshStream.map { _ in
   return "https://api.github.com/users" + String(random)
 }
 ```
-*`refresh` is an outlet for Refresh button in our class, and random() is a custom extension*
+*`refresh` is an outlet for a Refresh button in our class, and random() is a custom extension*
 
 Because I'm dumb and I don't have automated tests, I just broke one of our previously built features: a request doesn't happen anymore on startup, it happens only when the refresh button is tapped.
-Urgh. I need both behaviors: a request when either refresh button is tapped or the UITableVIew  was just loaded.
+Urgh. I need both behaviors: a request when either the refresh button is tapped or the UITableVIew has just loaded.
 
-We know how to make a separate stream for each one of those cases:
+We know how to make a separate streams for each one of those cases:
 ```Swift
 let refreshStream = refresh.rx_tap
 let requestStream: Observable<String> = refreshStream.map { _ in
@@ -215,7 +215,7 @@ In detail:
 let requestStream = Observable.of(refreshStream, beginningStream).merge()
 ```
 
-And there is a cleaner way without the intermediate streamsm, by using `startWith(())`
+And there is a cleaner way without the intermediate streams, by using `startWith(())`
 ```Swift
 let refreshStream = refresh.rx_tap.startWith(())
 let requestStream: Observable<String> = refreshStream.map { _ in
@@ -225,12 +225,12 @@ let requestStream: Observable<String> = refreshStream.map { _ in
 ```
 
 # 3 suggestions streams
-As soons as we received users information from `responseStream`, we will want to show it immmediately on 3 UITableVIewCell. 
+As soons as we received 'users' data from `responseStream`, we will want to show it immmediately on the 3 UITableVIewCells. 
 Let's think about Reactive mantra: "Everything is a stream"
 
 ![Mantra](https://camo.githubusercontent.com/e581baffb3db3e4f749350326af32de8d5ba4363/687474703a2f2f692e696d6775722e636f6d2f4149696d5138432e6a7067)
 
-So let's create a seperated stream *for each cell*.
+So let's create a seperate stream *for each cell*.
 ```Swift
 // Inside func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
 let userStream: Observable<User?> = responseStream.map { users in
@@ -239,8 +239,8 @@ let userStream: Observable<User?> = responseStream.map { users in
 }
 ```
 
-With the refresh button we have a problem: as soon as user tap 'Refresh', the current 3 suggestions are not cleared. 
-New suggestions come in only after a response has arrived, but to make the UI look nice, we need to clean out the current suggestions when taps happen on the refresh. 
+With the refresh button we have a problem: as soon as user taps 'Refresh', the current 3 suggestions are not cleared. 
+New suggestions come in only after a response has arrived, but to make the UI look nice, we need to clean out the current suggestions when refresh is tapped. 
 We can do that by mapping Refresh tap to a nil stream, and merge to above `userStream` as such:
 ```Swift
 let nilOnRefreshTapStream: Observable<User?> = refresh.rx_tap
@@ -379,7 +379,7 @@ suggestionStream.subscribeNext{ op in
 }.addDisposableTo(cell.disposeBagCell)
 ```
 
-You can see the working example on this repo.
+You can see the working example in this repo.
 
 That example is small but dense: it features management of multiple events with proper separation of concerns, and even caching of responses. 
 The functional style made the code look more declarative than imperative: we are not giving a sequence of instructions to execute, we are just telling what something is by defining relationships between streams. 
@@ -391,12 +391,12 @@ In Rx, we have stream functions such as map, filter, scan, merge, combineLatest,
 This toolset of functions gives you more power in less code.
 
 # Where to go from here
-If you think RxSwift will be your preferred library for IOS Programming, take a while to get acquainted with [RxSwift API](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/API.md) for transforming, combining, and creating Observables. 
+If you think RxSwift will be your preferred library for IOS Programming, take some time to get acquainted with [RxSwift API](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/API.md) for transforming, combining, and creating Observables. 
 If you want to understand those functions in diagrams of streams, take a look at [Marble diagrams](http://rxmarbles.com/). 
-Whenever you get stuck trying to do something, draw those diagrams, think on them, look at the long list of functions, and think more. 
+Whenever you get stuck trying to do something, draw those diagrams, think about them, look at the long list of functions, and think more. 
 This workflow has been effective in my experience.
 
-Once you start getting the hang of programming with RxSwift, you will need to get used to libraries which are using along such as `RxCocoa`, `Moya/RxSwift`, `RxDataSources` and then [Driver](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Units.md), etc. 
+Once you start getting the hang of programming with RxSwift, you will need to get used to libraries which are using it such as `RxCocoa`, `Moya/RxSwift`, `RxDataSources` and then [Driver](https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Units.md), etc. 
 Finally, sharpen your skills further by learning real functional programming, and getting acquainted with issues such as side effects that affect Rx.
 
 If this tutorial helped you, [tweet it forward](https://twitter.com/intent/tweet?original_referer=https:%2F%2Fgithub.com%2FDTVD%2FThe-introduction-to-RxSwift-you-have-been-missing&amp;text=The%20introduction%20to%20RxSwift%20you%27ve%20been%20missing&amp;tw_p=tweetbutton&amp;url=https:%2F%2Fgithub.com%2FDTVD%2FThe-introduction-to-RxSwift-you-have-been-missing&amp;via=dtvd88).
