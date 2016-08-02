@@ -1,9 +1,6 @@
 # The introduction to RxSwift you've been missing
 
-This work is inspired by [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) 
-from [@andrestaltz](https://twitter.com/andrestaltz).
-I recreated his RxJS sample code in RxSwift with a step-by-step walkthrough  
-for those struggling with learning RxSwift due to lack of good references (as I did).
+This work is inspired by [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754) from [@andrestaltz](https://twitter.com/andrestaltz). I recreated his RxJS sample code in RxSwift with a step-by-step walkthrough for those struggling with learning RxSwift due to lack of good references (as I did).
 
 <img src="https://i.gyazo.com/60f3a1b7dc9384b7400a6780cd82e727.gif" width="400">
 
@@ -381,13 +378,13 @@ suggestionStream.subscribeNext{ op in
 
 You can see the working example in this repo.
 
-That example is small but dense: it features management of multiple events with proper separation of concerns, and even caching of responses. 
+This example is small but dense: it features management of multiple events with proper separation of concerns, and even caching of responses. 
 The functional style made the code look more declarative than imperative: we are not giving a sequence of instructions to execute, we are just telling what something is by defining relationships between streams. 
-For instance, with Rx we told the computer that `suggestionStream` is the 'close' stream combined with one user from the latest response, besides being nil when a refresh happens or program startup happened.
+For instance, with Rx we told the computer that `suggestionStream` is the `closeStream` combined with one user from the latest response, besides being nil when a refresh happens or program startup happened.
 
 Notice also the impressive absence of control flow elements such as if, for, while, and the typical callback-based control flow that you expect from a Swift/IOS application. 
 You can even get rid of the if and else in the `subscribeNext()` above by using `filter()` if you want (I'll leave the implementation details to you as an exercise). 
-In Rx, we have stream functions such as map, filter, scan, merge, combineLatest, startWith, and many more to control the flow of an event-driven program. 
+In Rx, we have stream functions such as `map`, `filter`, `scan`, `merge`, `combineLatest`, `startWith`, and many more to control the flow of an event-driven program. 
 This toolset of functions gives you more power in less code.
 
 # Where to go from here
