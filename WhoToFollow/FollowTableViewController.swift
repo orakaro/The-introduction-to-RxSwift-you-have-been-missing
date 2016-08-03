@@ -85,7 +85,7 @@ extension FollowTableViewController: UITableViewDataSource {
                 cell.cancel.hidden = false
                 cell.avatar.image = UIImage(data: data)
                 cell.name.text = user.name
-            });
+            })
         }
     }
     

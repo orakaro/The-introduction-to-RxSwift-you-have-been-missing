@@ -27,7 +27,7 @@ Also, reading the code is not easy, since it introduces RxSwift in great detail 
 So I decided to code a sample app that presents exactly "Who to Follow" pattern with step-by-step explanations. This is equivalent to Andre's work, but is written in Swift instead and I hope this can help you learn RxSwift easier than me :smile:
 
 # What is Reactive Programming?
-Tapping a button, typing one chracter inside a text field, etc, every occurrence triggered by user can be considered as a typical asynchronous event.
+Tapping a button, typing one character inside a text field, etc, every occurrence triggered by user can be considered as a typical asynchronous event.
 What if our user repeatedly taps an element, or is continuously typing in a search bar? 
 This time we have *asynchronous event streams*.
 
