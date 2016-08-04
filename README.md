@@ -212,14 +212,15 @@ In detail:
 let requestStream = Observable.of(refreshStream, beginningStream).merge()
 ```
 
-And there is a cleaner way without the intermediate streams, by using `startWith(())`
+And there is a cleaner way without the intermediate streams:
 ```Swift
-let refreshStream = refresh.rx_tap.startWith(())
+let refreshStream = refresh.rx_tap.startWith(()) // Here
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
   return "https://api.github.com/users" + String(random)
 }
 ```
+The `startWith()` function does exactly what you think it does. No matter how your input stream looks like, the output stream resulting of `startWith(x)` will have x at the beginning. By adding `startWith()` to `refreshStream`, we "emulate" a refresh tap on startup.
 
 # 3 suggestions streams
 As soons as we received 'users' data from `responseStream`, we will want to show it immmediately on the 3 UITableVIewCells. 
