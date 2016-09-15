@@ -181,7 +181,7 @@ In RxSwift, the stream of tap events can be created with method `rx_tap`
 let refreshStream = refresh.rx_tap
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
-  return "https://api.github.com/users" + String(random)
+  return "https://api.github.com/users/" + String(random)
 }
 ```
 *`refresh` is an outlet for a Refresh button in our class, and random() is a custom extension*
@@ -194,7 +194,7 @@ We know how to make a separate streams for each one of those cases:
 let refreshStream = refresh.rx_tap
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
-  return "https://api.github.com/users" + String(random)
+  return "https://api.github.com/users/" + String(random)
 }
 let beginningStream: Observable<String> = Observable.just("https://api.github.com/users")
 ```
@@ -217,7 +217,7 @@ And there is a cleaner way without the intermediate streams:
 let refreshStream = refresh.rx_tap.startWith(()) // Here
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
-  return "https://api.github.com/users" + String(random)
+  return "https://api.github.com/users/" + String(random)
 }
 ```
 The `startWith()` function does exactly what you think it does. No matter how your input stream looks like, the output stream resulting of `startWith(x)` will have x at the beginning. By adding `startWith()` to `refreshStream`, we "emulate" a refresh tap on startup.
@@ -292,7 +292,7 @@ let requestStream = Observable.of(refreshStream, closeStream)
   .merge()
   .map { _ in
   let random = Array(1...1000).random()
-  return "https://api.github.com/users" + String(random)
+  return "https://api.github.com/users/" + String(random)
 }
 ```
 This will close and reload *all suggestion*, rather than just only the one user tapped on. 
@@ -353,7 +353,7 @@ We are done. The complete code is below
 let refreshStream = refresh.rx_tap.startWith(())
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
-  return "https://api.github.com/users" + String(random)
+  return "https://api.github.com/users/" + String(random)
 }
 let responseStream = requestStream.flatMap { url in 
   return UserModel().findUsers(url)
