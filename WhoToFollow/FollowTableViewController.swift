@@ -4,22 +4,22 @@ import RxCocoa
 import Moya
 
 class FollowTableViewController: UIViewController {
-    
+
     @IBOutlet weak var refresh: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var disposeBag = DisposeBag()
     var provider: RxMoyaProvider<GitHub>! = RxMoyaProvider<GitHub>()
     var dataSource = [User]()
     var responseStream: Observable<[User]> = Observable.just([])
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 70.0
         rxBind()
     }
-    
+
     func rxBind() {
         let requestStream: Observable<Int> = refresh.rx.tap.startWith(())
             .map { _ in
@@ -30,25 +30,24 @@ class FollowTableViewController: UIViewController {
                 UserModel(provider: self.provider).findUsers(since)
         }
     }
-    
 }
 
 extension FollowTableViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCell", for: indexPath) as! FollowTableViewCell
         cell.cancel.showsTouchWhenHighlighted = true
         cell.avatar.layer.cornerRadius = cell.avatar.frame.size.width / 2
         cell.avatar.clipsToBounds = true
-        
+
         let closeStream = cell.cancel.rx.tap.startWith(())
         let userStream: Observable<User?> = Observable.combineLatest(
             closeStream,
@@ -61,21 +60,21 @@ extension FollowTableViewController: UITableViewDataSource {
         let suggestionStream = Observable.of(userStream, nilOnRefreshTapStream)
             .merge()
             .startWith(.none)
-        
+
         suggestionStream.subscribe(onNext: { op in
             guard let u = op else { return self.clearCell(cell) }
             return self.setCell(cell, user: u )
         }).addDisposableTo(cell.disposeBagCell)
-        
+
         return cell
     }
-    
+
     func clearCell(_ cell: FollowTableViewCell) {
         cell.cancel.isHidden = true
         cell.avatar.image = nil
         cell.name.text = nil
     }
-    
+
     func setCell(_ cell: FollowTableViewCell, user: User) {
         clearCell(cell)
         guard let url = URL(string: user.avatarUrl) else {return}
@@ -88,7 +87,7 @@ extension FollowTableViewController: UITableViewDataSource {
             })
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }

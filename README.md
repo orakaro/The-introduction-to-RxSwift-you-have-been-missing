@@ -107,10 +107,10 @@ Where a is the string "https://api.github.com/users"
 
 `requestStream` is just a stream of strings, it does nothing else. We need to make the "real" request happen when the event is emmited by *subscribing* to it
 ```Swift
-requestStream.subscribeNext { url in 
+requestStream.subscribe(onNext: { url in 
   // Do the real request to Github API, get back a `User` model
   let responseStream: Observable<[User]> = UserModel().findUsers(url)
-}
+})
 ```
 
 Note that `responseStream` is also an `Observable`. 
@@ -118,15 +118,15 @@ You can find the implementation details of `UserModel().findUsers(url)` later on
 
 So the next step is rendering this list of Users to UITableView, which can be done by subcribing to the `responseStream` again
 ```Swift
-requestStream.subscribeNext { url in 
+requestStream.subscribe(onNext: { url in 
   let responseStream: Observable<[User]> = UserModel().findUsers(url)
   responseStream.subscribeNext { users in
     // ...
   }
-}
+})
 ```
 
-If you were quick to notice, we have one `subscribeNext` call inside another, which is somewhat akin to callback hell. 
+If you were quick to notice, we have one `subscribe(onNext:)` call inside another, which is somewhat akin to callback hell. 
 In Rx there are simple mechanisms for transforming and creating new streams out of others, and the corresponding method here is `map(f)`.
 
 ```Swift
@@ -167,18 +167,18 @@ let requestStream: Observable<String> = Observable.just("https://api.github.com/
 let responseStream = requestStream.flatMap { url in 
   return UserModel().findUsers(url)
 }
-responseStream.subscribeNext { users in
+responseStream.subscribe(onNext: { users in
   // users is a normal [User] list, here comes the UI Rendering part
-}
+})
 ```
 
 # The refresh button
 We will want a set of 3 new users every time a user taps the "refresh" button. How do we achieve this scenario?
 
 We need 2 streams: a stream of tap events on the refresh button, and a stream of API URLs transformed from that stream. 
-In RxSwift, the stream of tap events can be created with method `rx_tap`
+In RxSwift, the stream of tap events can be created with method `rx.tap`
 ```Swift
-let refreshStream = refresh.rx_tap
+let refreshStream = refresh.rx.tap
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
   return "https://api.github.com/users/" + String(random)
@@ -191,7 +191,7 @@ Urgh. I need both behaviors: a request when either the refresh button is tapped 
 
 We know how to make a separate streams for each one of those cases:
 ```Swift
-let refreshStream = refresh.rx_tap
+let refreshStream = refresh.rx.tap
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
   return "https://api.github.com/users/" + String(random)
@@ -214,7 +214,7 @@ let requestStream = Observable.of(refreshStream, beginningStream).merge()
 
 And there is a cleaner way without the intermediate streams:
 ```Swift
-let refreshStream = refresh.rx_tap.startWith(()) // Here
+let refreshStream = refresh.rx.tap.startWith(())
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
   return "https://api.github.com/users/" + String(random)
@@ -241,17 +241,17 @@ With the refresh button we have a problem: as soon as user taps 'Refresh', the c
 New suggestions come in only after a response has arrived, but to make the UI look nice, we need to clean out the current suggestions when refresh is tapped. 
 We can do that by mapping Refresh tap to a nil stream, and merge to above `userStream` as such:
 ```Swift
-let nilOnRefreshTapStream: Observable<User?> = refresh.rx_tap
+let nilOnRefreshTapStream: Observable<User?> = refresh.rx.tap
   .map {_ in return nil}
 let suggestionStream = Observable.of(userStream, nilOnRefreshTapStream)
   .merge()
 ```
 And when rendering, we interpret `nil` as "no data", hence hiding cell's UI element:
 ```Swift
-suggestionStream.subscribeNext{ op in
+suggestionStream.subscribe(onNext: { op in
   guard let u = op else { return self.clearCell(cell) }
-  return self.setCell(cell, user: u )
-}.addDisposableTo(cell.disposeBagCell)
+  return self.setCell(cell, user: u)
+}).addDisposableTo(cell.disposeBagCell)
 ```
 The big picture is now:
 ```
@@ -264,13 +264,13 @@ suggestionStream(Cell 3): ----t-----N---t----N-t-->
 ```
 Where N stands for nil.
 As a bonus, we can also render "empty" suggestions on startup. 
-That is done by adding `.startWith(.None)` to the suggestion streams:
+That is done by adding `.startWith(.none)` to the suggestion streams:
 ```Swift
-let nilOnRefreshTapStream: Observable<User?> = refresh.rx_tap
+let nilOnRefreshTapStream: Observable<User?> = refresh.rx.tap
   .map {_ in return nil}
 let suggestionStream = Observable.of(userStream, nilOnRefreshTapStream)
   .merge()
-  .startWith(.None)
+  .startWith(.none)
 ```
 Which results in:
 ```
@@ -287,7 +287,7 @@ There is one feature remaining to implement.
 Each suggestion should have its own 'x' button for closing it, and loading another in its place. 
 At first thought, you could say it's enough to make a new request when any close button is tapped
 ```Swift
-let closeStream = cell.cancel.rx_tap // "cancel" is outlet for cancel button
+let closeStream = cell.cancel.rx.tap // "cancel" is outlet for cancel button
 let requestStream = Observable.of(refreshStream, closeStream)
   .merge()
   .map { _ in
@@ -295,7 +295,7 @@ let requestStream = Observable.of(refreshStream, closeStream)
   return "https://api.github.com/users/" + String(random)
 }
 ```
-This will close and reload *all suggestion*, rather than just only the one user tapped on. 
+This will close and reload *all suggestions*, rather than just only the one user tapped on. 
 There are a couple of different ways of solving this, and to keep it interesting, we will solve it by reusing previous responses. 
 The API's response page size is 100 users while we were using just 3 of those, so there is plenty of fresh data available. 
 No need to request more.
@@ -326,16 +326,16 @@ We can apply combineLatest() on `closeStream` and `responseStream`, so that when
 On the other hand, `combineLatest(f)` is symmetric: whenever a new response is emitted on `responseStream`, it will combine with the latest 'close' tap to produce a new suggestion. 
 
 ```Swift
-let closeStream = cell.cancel.rx_tap
+let closeStream = cell.cancel.rx.tap
 let userStream: Observable<User?> = Observable.combineLatest(closeStream, responseStream)
 { (_, users) in
   guard users.count > 0 else {return nil}
   return users.random()
 }
-let nilOnRefreshTapStream: Observable<User?> = refresh.rx_tap.map {_ in return nil}
+let nilOnRefreshTapStream: Observable<User?> = refresh.rx.tap.map {_ in return nil}
 let suggestionStream = Observable.of(userStream, nilOnRefreshTapStream)
   .merge()
-  .startWith(.None)
+  .startWith(.none)
 ```
 One piece is still missing in the puzzle. 
 The `combineLatest(f)` uses the most recent of the two sources, but if one of those sources hasn't emitted anything yet, `combineLatest(f)` cannot produce a data event on the output stream. 
@@ -344,13 +344,13 @@ Only when the second stream emitted value b could it produce an output value.
 
 There are different ways of solving this, and we will stay with the simplest one, which is simulating a tap to the 'close' button on startup:
 ```Swift
-let closeStream = cell.cancel.rx_tap.startWith(())
+let closeStream = cell.cancel.rx.tap.startWith(())
 ```
 
 # Wrapping up
 We are done. The complete code is below
 ```Swift
-let refreshStream = refresh.rx_tap.startWith(())
+let refreshStream = refresh.rx.tap.startWith(())
 let requestStream: Observable<String> = refreshStream.map { _ in
   let random = Array(1...1000).random()
   return "https://api.github.com/users/" + String(random)
@@ -360,21 +360,21 @@ let responseStream = requestStream.flatMap { url in
 }
 
 // Inside func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-let closeStream = cell.cancel.rx_tap.startWith(())
+let closeStream = cell.cancel.rx.tap.startWith(())
 let userStream: Observable<User?> = Observable.combineLatest(closeStream, responseStream)
 { (_, users) in
   guard users.count > 0 else {return nil}
   return users.random()
 }
-let nilOnRefreshTapStream: Observable<User?> = refresh.rx_tap.map {_ in return nil}
+let nilOnRefreshTapStream: Observable<User?> = refresh.rx.tap.map {_ in return nil}
 let suggestionStream = Observable.of(userStream, nilOnRefreshTapStream)
   .merge()
-  .startWith(.None)
+  .startWith(.none)
 
-suggestionStream.subscribeNext{ op in
+suggestionStream.subscribe(onNext: { op in
   guard let u = op else { return self.clearCell(cell) }
   return self.setCell(cell, user: u )
-}.addDisposableTo(cell.disposeBagCell)
+}).addDisposableTo(cell.disposeBagCell)
 ```
 
 You can see the working example in this repo.
@@ -384,7 +384,7 @@ The functional style made the code look more declarative than imperative: we are
 For instance, with Rx we told the computer that `suggestionStream` is the `closeStream` combined with one user from the latest response, besides being nil when a refresh happens or program startup happened.
 
 Notice also the impressive absence of control flow elements such as if, for, while, and the typical callback-based control flow that you expect from a Swift/IOS application. 
-You can even get rid of the if and else in the `subscribeNext()` above by using `filter()` if you want (I'll leave the implementation details to you as an exercise). 
+You can even get rid of the if and else in the `subscribe(onNext:)` above by using `filter()` if you want (I'll leave the implementation details to you as an exercise). 
 In Rx, we have stream functions such as `map`, `filter`, `scan`, `merge`, `combineLatest`, `startWith`, and many more to control the flow of an event-driven program. 
 This toolset of functions gives you more power in less code.
 
