@@ -4,17 +4,17 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'WhoToFollow' do
-    pod 'RxSwift', '~> 2.0'
-    pod 'RxCocoa', '~> 2.0'
-    pod 'Moya/RxSwift'
-    pod 'Moya-ModelMapper/RxSwift'
-    pod 'RxOptional'
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'RxSwift', '~> 3.2'
+    pod 'RxCocoa', '~> 3.2'
+    pod 'Moya', '~> 8.0'
+    pod 'Moya-ModelMapper/RxSwift', '~> 4.1'
+    pod 'RxOptional', '~> 3.1'
+    pod 'SwiftyJSON', '~> 3.1'
 end
 
 target 'WhoToFollowTests' do
-  pod 'Quick', '~> 0.8.0'
-  pod 'Nimble', '3.0.0'
-  pod 'RxBlocking', '~> 2.0'
-  pod 'RxTests', '~> 2.2'
+  pod 'Quick', '~> 1.1'
+  pod 'Nimble', '~> 6.0'
+  pod 'RxBlocking', '~> 3.2'
+  pod 'RxTest', '~> 3.2'
 end

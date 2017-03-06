@@ -1,70 +1,63 @@
 PODS:
-  - Alamofire (3.4.1)
-  - ModelMapper (2.1.0)
-  - Moya (6.5.0):
-    - Moya/Core (= 6.5.0)
-  - Moya-ModelMapper/Core (2.0.1):
-    - ModelMapper (~> 2.0)
-    - Moya (~> 6.4)
-  - Moya-ModelMapper/RxSwift (2.0.1):
+  - Alamofire (4.4.0)
+  - ModelMapper (6.0.0)
+  - Moya (8.0.2):
+    - Moya/Core (= 8.0.2)
+  - Moya-ModelMapper/Core (4.1.0):
+    - ModelMapper
+    - Moya (~> 8.0.0)
+  - Moya-ModelMapper/RxSwift (4.1.0):
     - Moya-ModelMapper/Core
-    - Moya/RxSwift (~> 6.4)
-    - RxSwift (~> 2.3)
-  - Moya/Core (6.5.0):
-    - Alamofire (~> 3.0)
-    - Result (~> 2.0)
-  - Moya/RxSwift (6.5.0):
+    - Moya/RxSwift (~> 8.0.0)
+    - RxSwift
+  - Moya/Core (8.0.2):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (8.0.2):
     - Moya/Core
-    - RxSwift (~> 2.0)
-  - Nimble (3.0.0)
-  - Quick (0.8.0)
-  - Result (2.1.3)
-  - RxBlocking (2.6.0):
-    - RxSwift (~> 2.5)
-  - RxCocoa (2.6.0):
-    - RxSwift (~> 2.5)
-  - RxOptional (2.0.0):
-    - RxCocoa (~> 2.0)
-    - RxSwift (~> 2.0)
-  - RxSwift (2.6.0)
-  - RxTests (2.6.0):
-    - RxSwift (~> 2.5)
-  - SwiftyJSON (2.3.2)
+    - RxSwift (~> 3.0)
+  - Nimble (6.0.0)
+  - Quick (1.1.0)
+  - Result (3.2.1)
+  - RxBlocking (3.2.0):
+    - RxSwift (~> 3.1)
+  - RxCocoa (3.2.0):
+    - RxSwift (~> 3.1)
+  - RxOptional (3.1.3):
+    - RxCocoa
+    - RxSwift
+  - RxSwift (3.2.0)
+  - RxTest (3.2.0):
+    - RxSwift (~> 3.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Moya-ModelMapper/RxSwift
-  - Moya/RxSwift
-  - Nimble (= 3.0.0)
-  - Quick (~> 0.8.0)
-  - RxBlocking (~> 2.0)
-  - RxCocoa (~> 2.0)
-  - RxOptional
-  - RxSwift (~> 2.0)
-  - RxTests (~> 2.2)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-
-EXTERNAL SOURCES:
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  - Moya (~> 8.0)
+  - Moya-ModelMapper/RxSwift (~> 4.1)
+  - Nimble (~> 6.0)
+  - Quick (~> 1.1)
+  - RxBlocking (~> 3.2)
+  - RxCocoa (~> 3.2)
+  - RxOptional (~> 3.1)
+  - RxSwift (~> 3.2)
+  - RxTest (~> 3.2)
+  - SwiftyJSON (~> 3.1)
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  ModelMapper: e599744bc1e869bdb87b453b7ce16981028b8513
-  Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
-  Moya-ModelMapper: 8956f8e834eea3cf776e79ddbf6680e0d53c5923
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
-  Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
-  RxBlocking: f2e0a7e74d5e9d3029d2b1118e2af01f583fbdd8
-  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
-  RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
-  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
-  RxTests: cdcc379c70e80089a8bc2c99515223339d1c3b81
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  ModelMapper: 3596a82f26c43491f6a8d3a00bcdba6ba0e62a93
+  Moya: 47f61da5b634aa71f676431b64ee0f81e976296d
+  Moya-ModelMapper: 7084396138e6f9359881db654ee6a4d826a64f14
+  Nimble: 8fb9b4b34c535b2f32f52c6b9852d6f02d48610b
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  RxBlocking: ec8ed471ba77b4fb98a2d60f1f8419b0b46eaa23
+  RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
+  RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
+  RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
+  RxTest: 85fdd6f753e8e62635a58d37bbdd3ce7d5abbef3
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: ec04d73a53c5a850d99fa0d11eed00a1c58c416a
+
+COCOAPODS: 1.2.0

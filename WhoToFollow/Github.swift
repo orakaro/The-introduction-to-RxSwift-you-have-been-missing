@@ -2,26 +2,38 @@ import Foundation
 import Moya
 
 enum GitHub {
-    case Users(since: Int)
+    case users(since: Int)
 }
 
 extension GitHub: TargetType {
-    var baseURL: NSURL { return NSURL(string: "https://api.github.com")! }
-    var path: String {
+    public var parameterEncoding: ParameterEncoding {
+        return URLEncoding.default
+    }
+    
+    public var task: Task {
+        return .request
+    }
+    
+    public var baseURL: URL { return URL(string: "https://api.github.com")! }
+    
+    public var path: String {
         switch self {
-        case .Users:
+        case .users:
             return "/users"
         }
     }
+    
     var method: Moya.Method {
-        return .GET
+        return .get
     }
-    var parameters: [String: AnyObject]? {
+    
+    public var parameters: [String: Any]? {
         switch self {
-        case .Users(let since): return ["since": since]
+        case .users(let since): return ["since": since as Any]
         }
     }
-    var sampleData: NSData {
-        return "".dataUsingEncoding(NSUTF8StringEncoding)!
+    
+    var sampleData: Data {
+        return "".data(using: String.Encoding.utf8)!
     }
 }
